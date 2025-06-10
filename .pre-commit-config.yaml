@@ -1,0 +1,37 @@
+# .pre-commit-config.yaml
+# 安装: pip install pre-commit
+# 初始化: pre-commit install
+# 手动运行: pre-commit run --all-files
+
+repos:
+  # Ruff 用于代码检查和格式化
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.8
+    hooks:
+      # 运行 ruff 检查器
+      - id: ruff
+        args: ["--fix", "--exit-non-zero-on-fix"]
+      # 运行 ruff 格式化器
+      - id: ruff-format
+
+  # 其他基础检查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # 检查合并冲突标记
+      - id: check-merge-conflict
+      # 检查文件名是否有冲突
+      - id: check-case-conflict
+      # 修剪尾随空格
+      - id: trailing-whitespace
+      # 确保文件以换行符结尾
+      - id: end-of-file-fixer
+      # 检查 YAML 语法
+      - id: check-yaml
+      # 检查 JSON 语法
+      - id: check-json
+      # 检查 TOML 语法
+      - id: check-toml
+      # 阻止添加大文件
+      - id: check-added-large-files
+        args: ["--maxkb=500"] 

@@ -1,0 +1,81 @@
+[project]
+name = "gemini-to-openai-tts"
+version = "0.1.0"
+description = "A proxy service to convert OpenAI TTS API calls to Gemini TTS API."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "google-genai",
+    "pydub",
+    "python-dotenv",
+    "pydantic-settings>=2.9.1",
+    "google-api-core>=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "pre-commit>=3.5.0",
+]
+
+[tool.ruff]
+# 目标 Python 版本
+target-version = "py312"
+
+# 代码行长度限制
+line-length = 88
+
+# 包含的文件模式
+include = ["*.py", "*.pyi"]
+
+# 排除的目录和文件
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "*.egg-info",
+    ".pytest_cache",
+    ".ruff_cache",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+# 启用的规则集
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "PIE", # flake8-pie
+    "SIM", # flake8-simplify
+    "RET", # flake8-return
+    "C90", # mccabe complexity
+]
+
+# 忽略的规则
+ignore = [
+    "E501",   # 行长度由 formatter 处理
+    "B008",   # 允许在函数参数中使用 Depends() 等
+    "RET504", # 允许在 if-else 后有变量赋值
+]
+
+# 每个文件的最大复杂度
+mccabe.max-complexity = 12
+
+[tool.ruff.lint.isort]
+# isort 配置
+known-first-party = ["app"]
+force-single-line = false
+lines-after-imports = 2
+
+[tool.ruff.format]
+# 格式化配置
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
