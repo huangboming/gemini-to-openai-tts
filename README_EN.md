@@ -275,6 +275,21 @@ Content-Type: application/json
 
 ### Usage Examples
 
+#### Use in Open WebUI
+
+To use this TTS service in Open WebUI:
+
+1. Open the Admin Panel in Open WebUI
+2. Navigate to `Settings -> Audio`
+3. Configure the following settings:
+   - Set the TTS API endpoint to your service URL (e.g., `http://localhost:8000/v1/audio/speech`)
+   - Add your API key in the authentication field
+   - Select your preferred voice from the available options
+
+Here's how the configuration looks in Open WebUI:
+
+![Configure TTS service in Open WebUI](images/open-webui-en.png)
+
 #### Python Example
 
 ```python

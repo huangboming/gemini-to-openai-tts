@@ -275,6 +275,21 @@ Content-Type: application/json
 
 ### 使用示例
 
+#### 在 Open WebUI 中使用
+
+要在 Open WebUI 中使用此 TTS 服务：
+
+1. 在 Open WebUI 中打开管理员面板
+2. 导航至 `设置 -> 语音`
+3. 配置以下设置：
+   - 将 TTS API 端点设置为你的服务 URL（例如：`http://localhost:8000/v1/audio/speech`）
+   - 在认证字段中添加你的 API 密钥
+   - 从可用选项中选择你喜欢的语音
+
+Open WebUI 中的配置示例如下：
+
+![在 Open WebUI 中配置 TTS 服务](images/open-webui-cn.png)
+
 #### Python 示例
 
 ```python
