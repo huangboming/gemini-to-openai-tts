@@ -81,6 +81,9 @@
 
 ## 📋 Installation Guide
 
+<details>
+<summary><strong>📦 System Dependencies Installation Details</strong></summary>
+
 ### System Dependencies
 
 #### macOS
@@ -117,6 +120,8 @@ uv pip sync
 ```bash
 uv pip install -e ".[dev]"
 ```
+
+</details>
 
 ## ⚙️ Configuration
 
@@ -245,6 +250,9 @@ Content-Type: application/json
 
 ### Supported Voices
 
+<details>
+<summary><strong>🎙️ View All 30 Available Voices</strong></summary>
+
 | Voice Name | Style Description | Voice Name | Style Description |
 |------------|-------------------|------------|-------------------|
 | Zephyr | Bright | Puck | Upbeat |
@@ -262,6 +270,8 @@ Content-Type: application/json
 | Achird | Friendly | Zubenelgenubi | Casual |
 | Vindemiatrix | Gentle | Sadachbia | Lively |
 | Sadaltager | Knowledgeable | Sulafat | Warm |
+
+</details>
 
 ### Usage Examples
 
@@ -303,12 +313,6 @@ with open("output.mp3", "wb") as f:
 #### cURL Examples
 
 ```bash
-# Get available models list
-curl -X GET "http://localhost:8000/v1/audio/models"
-
-# Get available voices list
-curl -X GET "http://localhost:8000/v1/audio/voices"
-
 # Basic text-to-speech request
 curl -X POST "http://localhost:8000/v1/audio/speech" \
   -H "Authorization: Bearer your_api_key" \
@@ -322,20 +326,40 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
     "instructions": "Please speak with enthusiasm"
   }' \
   --output speech.mp3
+```
 
-# Using different voice and format
+<details>
+<summary><strong>📋 More API Usage Examples</strong></summary>
+
+### Get Models and Voices List Examples
+
+```bash
+# Get available models list
+curl -X GET "http://localhost:8000/v1/audio/models"
+
+# Get available voices list
+curl -X GET "http://localhost:8000/v1/audio/voices"
+```
+
+### Advanced Parameters Examples
+
+```bash
+# Request with speed and instructions
 curl -X POST "http://localhost:8000/v1/audio/speech" \
   -H "Authorization: Bearer your_api_key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gemini-2.5-flash-preview-tts",
-    "input": "This is a professional announcement.",
-    "voice": "Charon",
-    "response_format": "wav",
-    "speed": 0.9
+    "input": "Welcome to our text-to-speech service!",
+    "voice": "Zephyr",
+    "response_format": "mp3",
+    "speed": 1.2,
+    "instructions": "Please read with a cheerful and energetic tone"
   }' \
-  --output announcement.wav
+  --output welcome.mp3
 ```
+
+</details>
 
 ## 🐳 Deployment Guide
 
@@ -437,6 +461,9 @@ make clean          # Clean cache files
 make pre-commit     # Manually run pre-commit hooks
 ```
 
+<details>
+<summary><strong>📁 Project Structure Details</strong></summary>
+
 ### Project Structure
 
 ```
@@ -463,6 +490,11 @@ gemini-to-openai-tts/
 └── README.md            # Project documentation
 ```
 
+</details>
+
+<details>
+<summary><strong>🔧 Code Quality and Contributing Guidelines</strong></summary>
+
 ### Code Quality
 
 The project uses the following tools to ensure code quality:
@@ -480,7 +512,12 @@ The project uses the following tools to ensure code quality:
 4. Push to the branch: `git push origin feature/your-feature`
 5. Create a Pull Request
 
+</details>
+
 ## 🔧 Troubleshooting
+
+<details>
+<summary><strong>❓ Common Issues and Solutions</strong></summary>
 
 ### Common Issues
 
@@ -535,6 +572,8 @@ curl http://localhost:8000/health
 # Check API documentation
 curl http://localhost:8000/docs
 ```
+
+</details>
 
 ## 📄 License
 

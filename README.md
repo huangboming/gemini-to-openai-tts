@@ -81,6 +81,9 @@
 
 ## 📋 安装说明
 
+<details>
+<summary><strong>📦 系统依赖安装详情</strong></summary>
+
 ### 系统依赖
 
 #### macOS
@@ -117,6 +120,8 @@ uv pip sync
 ```bash
 uv pip install -e ".[dev]"
 ```
+
+</details>
 
 ## ⚙️ 配置说明
 
@@ -245,6 +250,9 @@ Content-Type: application/json
 
 ### 支持的语音
 
+<details>
+<summary><strong>🎙️ 查看所有30种可用语音</strong></summary>
+
 | 语音名称 | 风格描述 | 语音名称 | 风格描述 |
 |----------|----------|----------|----------|
 | Zephyr | Bright | Puck | Upbeat |
@@ -262,6 +270,8 @@ Content-Type: application/json
 | Achird | Friendly | Zubenelgenubi | Casual |
 | Vindemiatrix | Gentle | Sadachbia | Lively |
 | Sadaltager | Knowledgeable | Sulafat | Warm |
+
+</details>
 
 ### 使用示例
 
@@ -303,12 +313,6 @@ with open("output.mp3", "wb") as f:
 #### cURL 示例
 
 ```bash
-# 获取可用模型列表
-curl -X GET "http://localhost:8000/v1/audio/models"
-
-# 获取可用语音列表
-curl -X GET "http://localhost:8000/v1/audio/voices"
-
 # 基本文本转语音请求
 curl -X POST "http://localhost:8000/v1/audio/speech" \
   -H "Authorization: Bearer your_api_key" \
@@ -322,20 +326,40 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
     "instructions": "Please speak with enthusiasm"
   }' \
   --output speech.mp3
+```
 
-# 使用不同语音和格式
+<details>
+<summary><strong>📋 更多API使用示例</strong></summary>
+
+### 获取模型和语音列表示例
+
+```bash
+# 获取可用模型列表
+curl -X GET "http://localhost:8000/v1/audio/models"
+
+# 获取可用语音列表  
+curl -X GET "http://localhost:8000/v1/audio/voices"
+```
+
+### 高级参数示例
+
+```bash
+# 带语速和指令的请求
 curl -X POST "http://localhost:8000/v1/audio/speech" \
   -H "Authorization: Bearer your_api_key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gemini-2.5-flash-preview-tts",
-    "input": "This is a professional announcement.",
-    "voice": "Charon",
-    "response_format": "wav",
-    "speed": 0.9
+    "input": "欢迎使用我们的语音合成服务！",
+    "voice": "Zephyr",
+    "response_format": "mp3",
+    "speed": 1.2,
+    "instructions": "请用愉快活泼的语调朗读"
   }' \
-  --output announcement.wav
+  --output welcome.mp3
 ```
+
+</details>
 
 
 ## 🐳 部署指南
@@ -438,6 +462,9 @@ make clean          # 清理缓存文件
 make pre-commit     # 手动运行 pre-commit hooks
 ```
 
+<details>
+<summary><strong>📁 项目结构详情</strong></summary>
+
 ### 项目结构
 
 ```
@@ -464,6 +491,11 @@ gemini-to-openai-tts/
 └── README.md            # 项目文档
 ```
 
+</details>
+
+<details>
+<summary><strong>🔧 代码质量和贡献指南</strong></summary>
+
 ### 代码质量
 
 项目使用以下工具确保代码质量：
@@ -481,7 +513,12 @@ gemini-to-openai-tts/
 4. 推送分支：`git push origin feature/your-feature`
 5. 创建 Pull Request
 
+</details>
+
 ## 🔧 故障排除
+
+<details>
+<summary><strong>❓ 常见问题和解决方案</strong></summary>
 
 ### 常见问题
 
@@ -536,6 +573,8 @@ curl http://localhost:8000/health
 # 检查 API 文档
 curl http://localhost:8000/docs
 ```
+
+</details>
 
 ## 📄 许可证
 
