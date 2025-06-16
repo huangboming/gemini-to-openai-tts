@@ -152,3 +152,4 @@ cython_debug/
 uv.lock
 
 .cursor/
+.DS_Store
