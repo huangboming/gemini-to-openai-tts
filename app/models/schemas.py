@@ -40,7 +40,7 @@ VALID_VOICES = Literal[
 # 提取语音列表以便在其他地方使用
 VOICE_LIST = [
     "Zephyr",
-    "Puck", 
+    "Puck",
     "Charon",
     "Kore",
     "Fenrir",
@@ -75,10 +75,7 @@ VALID_RESPONSE_FORMATS = Literal["mp3", "opus", "aac", "flac", "wav"]
 
 # 支持的模型列表
 AVAILABLE_MODELS = [
-    {
-        "id": "gemini-2.5-flash-preview-tts",
-        "name": "Gemini 2.5 Flash TTS"
-    }
+    {"id": "gemini-2.5-flash-preview-tts", "name": "Gemini 2.5 Flash TTS"}
 ]
 
 
@@ -118,6 +115,7 @@ class ModelInfo(BaseModel):
     """
     模型信息的 Pydantic 模型。
     """
+
     id: str
     name: str
 
@@ -126,6 +124,7 @@ class ModelsResponse(BaseModel):
     """
     模型列表响应的 Pydantic 模型。
     """
+
     data: list[ModelInfo]
 
 
@@ -133,4 +132,5 @@ class VoicesResponse(BaseModel):
     """
     语音列表响应的 Pydantic 模型。
     """
+
     voices: list[str]

@@ -49,7 +49,7 @@ async def health_check():
 async def get_audio_models():
     """
     Get list of available audio models.
-    
+
     Returns a list of models compatible with OpenAI TTS API format.
     """
     logger.info("Models list requested")
@@ -61,7 +61,7 @@ async def get_audio_models():
 async def get_audio_voices():
     """
     Get list of available voice IDs.
-    
+
     Returns a list of voice IDs compatible with Open WebUI format.
     """
     logger.info("Voices list requested")
