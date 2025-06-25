@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   gemini-tts:
-    build: .
+    image: boming/gemini-to-openai-tts:latest
     ports:
       - "8000:8000"
     env_file:
@@ -37,4 +37,4 @@ services:
   #     - ./ssl:/etc/nginx/ssl:ro
   #   depends_on:
   #     - gemini-tts
-  #   restart: unless-stopped 
+  #   restart: unless-stopped
