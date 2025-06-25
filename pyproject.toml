@@ -2,7 +2,7 @@
 name = "gemini-to-openai-tts"
 version = "0.1.0"
 description = "A proxy service to convert OpenAI TTS API calls to Gemini TTS API."
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi",
     "uvicorn[standard]",
@@ -13,7 +13,7 @@ dependencies = [
     "google-api-core>=2.25.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "ruff>=0.1.0",
     "pre-commit>=3.5.0",
