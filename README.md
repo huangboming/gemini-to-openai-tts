@@ -140,7 +140,7 @@ API_KEYS="your_secret_api_key_1,your_secret_api_key_2"
 
 # === 上游 API 配置 ===
 # 你的 Google Gemini API 密钥
-# 获取方式：https://ai.google.dev/
+# 获取方式：https://aistudio.google.com/apikey
 GEMINI_API_KEY="your_google_gemini_api_key_here"
 
 # === 应用配置 ===
@@ -150,7 +150,7 @@ LOG_LEVEL="INFO"
 
 ### 获取 Gemini API 密钥
 
-1. 访问 [Google AI Studio](https://ai.google.dev/)
+1. 访问 [Google AI Studio](https://aistudio.google.com/apikey)
 2. 登录你的 Google 账户
 3. 创建新的 API 密钥
 4. 将密钥复制到 `.env` 文件中
