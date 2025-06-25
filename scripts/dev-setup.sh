@@ -23,11 +23,11 @@ fi
 
 # 安装开发依赖
 echo "📦 安装开发依赖..."
-uv pip install -e ".[dev]"
+uv sync
 
 # 设置 pre-commit hooks
 echo "🔧 设置 pre-commit hooks..."
-pre-commit install
+uv run pre-commit install
 
 # 检查环境变量文件
 if [ ! -f ".env" ]; then
@@ -54,4 +54,4 @@ echo "🛠️  常用命令："
 echo "   make help     - 查看所有可用命令"
 echo "   make run      - 启动开发服务器"
 echo "   make check    - 运行代码检查"
-echo "   make format   - 格式化代码" 
+echo "   make format   - 格式化代码"

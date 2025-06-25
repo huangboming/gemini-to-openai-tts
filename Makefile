@@ -18,11 +18,11 @@ help:
 
 # 安装生产依赖
 install:
-	uv pip sync
+	uv sync --no-dev
 
 # 安装开发依赖
 dev-install:
-	uv pip install -e ".[dev]"
+	uv sync
 
 # 一键设置开发环境
 setup:
@@ -39,20 +39,20 @@ test:
 
 # 代码检查
 lint:
-	ruff check app/
+	uv run ruff check app/
 
 # 代码格式化
 format:
-	ruff format app/
+	uv run ruff format app/
 
 # 检查代码（包括 lint 和 format 检查）
 check:
-	ruff check app/
-	ruff format app/ --check
+	uv run ruff check app/
+	uv run ruff format app/ --check
 
 # 手动运行 pre-commit hooks
 pre-commit:
-	pre-commit run --all-files
+	uv run pre-commit run --all-files
 
 # 清理缓存文件
 clean:
@@ -67,4 +67,4 @@ docker-build:
 
 # 运行 Docker 容器
 docker-run:
-	docker run --rm -p 8000:8000 --env-file .env gemini-to-openai-tts 
+	docker run --rm -p 8000:8000 --env-file .env gemini-to-openai-tts
