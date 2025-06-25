@@ -4,7 +4,7 @@
 
 🎯 **A high-performance text-to-speech proxy service that seamlessly integrates with Google Gemini TTS model (`gemini-2.5-flash-preview-tts`), fully compatible with OpenAI TTS API specifications.**
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](https://www.docker.com/)
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -37,10 +37,14 @@
    # Edit .env file and fill in your API keys
    ```
 
-3. **Build and run**
+3. **Run**
    ```bash
-   make docker-build
-   make docker-run
+   docker run -d \
+      --name gemini-tts \
+      -p 8000:8000 \
+      --env-file .env \
+      --restart unless-stopped \
+      boming/gemini-to-openai-tts:latest
    ```
 
 4. **Test the service**
@@ -60,7 +64,7 @@
 ### Local Development
 
 1. **Requirements**
-   - Python 3.12+
+   - Python 3.12
    - FFmpeg
    - uv (recommended package manager)
 
@@ -113,12 +117,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 #### Production Environment
 ```bash
-uv pip sync
+uv sync --no-dev
 ```
 
 #### Development Environment
 ```bash
-uv pip install -e ".[dev]"
+uv sync
 ```
 
 </details>
@@ -376,6 +380,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 
 </details>
 
+
 ## 🐳 Deployment Guide
 
 ### Docker Deployment (Recommended)
@@ -383,16 +388,12 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 #### Single Instance Deployment
 
 ```bash
-# 1. Build image
-docker build -t gemini-to-openai-tts .
-
-# 2. Run container
 docker run -d \
   --name gemini-tts \
   -p 8000:8000 \
   --env-file .env \
   --restart unless-stopped \
-  gemini-to-openai-tts
+  boming/gemini-to-openai-tts:latest
 ```
 
 #### Docker Compose
@@ -404,7 +405,7 @@ version: '3.8'
 
 services:
   gemini-tts:
-    build: .
+    image: boming/gemini-to-openai-tts:latest
     ports:
       - "8000:8000"
     env_file:
@@ -603,4 +604,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⭐ If this project helps you, please consider giving it a star! 
+⭐ If this project helps you, please consider giving it a star!

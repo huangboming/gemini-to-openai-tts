@@ -4,7 +4,7 @@
 
 🎯 **一个高性能的文本转语音代理服务，无缝对接 Google Gemini TTS 模型（`gemini-2.5-flash-preview-tts`），完全兼容 OpenAI TTS API 接口规范。**
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](https://www.docker.com/)
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -37,10 +37,14 @@
    # 编辑 .env 文件，填入你的 API 密钥
    ```
 
-3. **构建并运行**
+3. **运行**
    ```bash
-   make docker-build
-   make docker-run
+   docker run -d \
+      --name gemini-tts \
+      -p 8000:8000 \
+      --env-file .env \
+      --restart unless-stopped \
+      boming/gemini-to-openai-tts:latest
    ```
 
 4. **测试服务**
@@ -60,7 +64,7 @@
 ### 本地开发
 
 1. **环境要求**
-   - Python 3.12+
+   - Python 3.12
    - FFmpeg
    - uv (推荐的包管理器)
 
@@ -113,12 +117,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 #### 生产环境
 ```bash
-uv pip sync
+uv sync --no-dev
 ```
 
 #### 开发环境
 ```bash
-uv pip install -e ".[dev]"
+uv sync
 ```
 
 </details>
@@ -352,7 +356,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 # 获取可用模型列表
 curl -X GET "http://localhost:8000/v1/audio/models"
 
-# 获取可用语音列表  
+# 获取可用语音列表
 curl -X GET "http://localhost:8000/v1/audio/voices"
 ```
 
@@ -384,16 +388,12 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 #### 单机部署
 
 ```bash
-# 1. 构建镜像
-docker build -t gemini-to-openai-tts .
-
-# 2. 运行容器
 docker run -d \
   --name gemini-tts \
   -p 8000:8000 \
   --env-file .env \
   --restart unless-stopped \
-  gemini-to-openai-tts
+  boming/gemini-to-openai-tts:latest
 ```
 
 #### Docker Compose
@@ -405,7 +405,7 @@ version: '3.8'
 
 services:
   gemini-tts:
-    build: .
+    image: boming/gemini-to-openai-tts:latest
     ports:
       - "8000:8000"
     env_file:
